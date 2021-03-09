@@ -44,3 +44,4 @@ public interface ListLike<T> {
 	void delete(T t);
 }
 ```
+파사드 패턴?
