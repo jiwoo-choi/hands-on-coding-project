@@ -26,7 +26,67 @@ vs-code의 snippet도 작성해두었다.
 
 ![img](https://github.com/jiwoo-choi/mini-coding-project/blob/main/Framework/import.js/snippet.gif)
 
+
+## Usage
+### Controller 정의
+
+1. snippets를 활용하여 컨트롤러 보일러플레이트 코드를 생성한다.
+`controllers.js`
+```
+function TestController(){ 
+    this.state = { }
+    this.bind = () => {
+        return { } 
+    }
+    this.action = (component) => { 
+    }
+    this.render = (state, component) => {
+    }
+}
+```
+
+* this.state : 가장 최초 state를 정의한다. 이 state는 변경되지 않는다. 
+* this.setState : 기본으로 상속되는 코드이다. 모든 상태는 이 메소드 하나만을 가지고 변경가능하다. render()를 trigger하는 메소드이다.
+* this.bind : 외부 html을 내부 객체에서 통일해서 사용할 수 있도록 객체를 리턴한다. 여기서 리턴된 객체들이 뒤 component부분에 들어간다.
+* this.action : 외부 html의 action 부분을 정의하기 위해 만든 메소드다. 특별한 역할은 없고, 코드를 나누기 위해서 추가하였다.
+* this.render : render는 상태가 변경되었을 때 사용된다.
+
+```
+function TestController(){ 
+    this.state = {
+        str : ""
+     }
+
+    this.bind = () => {
+        return { 
+            input : $('input')
+            container : $('.container')
+        } 
+    }
+
+    this.action = (component) => { 
+        component.container.on('click', (e) => {
+            this.setState({str: e.target.value});
+        })
+    }
+    this.render = (state, component) => {
+        component.input.val(state.str);
+    }
+}
+```
+
+
+### LifeCycle
+
+1. intial state 등록.
+2. bind를 통해 객체 내부에서 사용할 html 엘리먼트 등록.
+3. action을 통해 bind된 html 엘리먼트의 액션 등록.
+4. 모든 것이 resolved 되면, init() 이 불린다.
+
 ## unresolved 문제
 - 렌더링 시, 성능 문제
 - 내부 state diff 체크의 시간 복잡도와, 정확성.
 - bind() 함수의 필요성. bind가 꼭 필요한가? bind를 어떻게 활용해줄 수 있을까?
+- this.state() intial state 랜더 여부.
+- 라이프사이클 -> init -> bind? bind -> init?
+
