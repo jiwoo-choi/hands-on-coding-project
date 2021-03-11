@@ -26,7 +26,7 @@
 추가적으로, 여러가지 훅 함수들을 사용하기 여러 코드들을 직접 장성해야하는데..
 그 피로를 줄이기 위해 vs-code의 snippet도 작성해두었다.
 
-![img](https://github.com/jiwoo-choi/mini-coding-project/blob/main/Framework/import.js/snippet.gif)
+![img](https://github.com/jiwoo-choi/hands-on-coding-project/blob/main/Framework/import.js/snippet.gif)
 
 
 ## Usage
