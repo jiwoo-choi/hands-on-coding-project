@@ -1,0 +1,19 @@
+{
+    "controller" : {
+        "scope" : "javascript",
+        "prefix" : "func-ct",
+        "body" : [
+            "function ${1:Controller}(){ ",
+            "\tthis.state = { }",
+            "\tthis.bind = () => {",
+            "\t\treturn { } ",
+            "\t}",
+            "\tthis.action = (component) => { ",
+            "\t}",
+            "\tthis.render = (state, component) => {",
+            "\t}",
+            "}"
+		],
+		"description": "컨트롤러 생성을 위한 스니펫 생성기입니다"
+    }
+}
