@@ -1,5 +1,5 @@
 # Clean-Code-Study
-TDD, Refactoring,Effective Java, Design Pattern, Framework 등 궁금한 기술들을 직접 프로젝트를 해보며 공부합니다.
+TDD, Refactoring,Effective Java, Design Pattern, Framework 등 궁금하거나 배웠던 지식들을 직접 프로젝트를 해보며 공부합니다.
 
 |  제목 | Topic  |  언어 | 태그 |
 |-|:-:|:-:|-|
