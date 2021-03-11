@@ -22,6 +22,7 @@ caluclator.js를 통해, html과 js의 로직을 최대한 분리하면, 테스�
 추가적으로, 여러가지 훅 함수들을 사용하기 위해서는 여러 코드들을 직접 작성해야하는 피로를 줄이기 위해
 vs-code의 snippet도 작성해두었다.
 
+![img](https://github.com/jiwoo-choi/mini-coding-project/blob/main/Framework/import.js/snippet.gif)
 ## unresolved 문제
 - 렌더링 시, 성능 문제
 - 내부 state diff 체크의 시간 복잡도와, 정확성.
