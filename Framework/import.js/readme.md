@@ -21,6 +21,7 @@
 - 작업단위가 동일해야한다. (Controller 라는 단위)
 - 테스트 하기가 쉬워진다.
 
+
 ## Snippets
 추가적으로, 여러가지 훅 함수들을 사용하기 여러 코드들을 직접 장성해야하는데..
 그 피로를 줄이기 위해 vs-code의 snippet도 작성해두었다.
@@ -29,60 +30,30 @@
 
 
 ## Usage
-### Controller 정의
 
-1. snippets를 활용하여 컨트롤러 보일러플레이트 코드를 생성한다.
-`controllers.js`
-```
-function TestController(){ 
-    this.state = { }
-    this.bind = () => {
-        return { } 
-    }
-    this.action = (component) => { 
-    }
-    this.render = (state, component) => {
-    }
-}
-```
-* this.state : 가장 최초 state를 정의한다. 이 state는 변경되지 않는다. 
-* this.setState : 기본으로 상속되는 코드이다. 모든 상태는 이 메소드 하나만을 가지고 변경가능하다. render()를 trigger하는 메소드이다.
-* this.bind : 외부 html을 내부 객체에서 통일해서 사용할 수 있도록 객체를 리턴한다. 여기서 리턴된 객체들이 뒤 component부분에 들어간다.
-* this.action : 외부 html의 action 부분을 정의하기 위해 만든 메소드다. 특별한 역할은 없고, 코드를 나누기 위해서 추가하였다.
-* this.render : render는 상태가 변경되었을 때 사용된다.
-
-```
-function TestController(){ 
-    this.state = {
-        str : ""
-     }
-
-    this.bind = () => {
-        return { 
-            input : $('input')
-            container : $('.container')
-        } 
-    }
-
-    this.action = (component) => { 
-        component.container.on('click', (e) => {
-            this.setState({str: e.target.value});
-        })
-    }
-    this.render = (state, component) => {
-        component.input.val(state.str);
-    }
-}
-
-```
 ### LifeCycle
 
-1. intial state의 객체 내부 등록.
-2. bind를 통해 객체 내부에서 사용할 html 엘리먼트 등록.
-3. action을 통해 bind된 html 엘리먼트의 액션 등록.
-4. 모든 것이 resolved 되면, init() 이 불린다.
+```
+init() -> bind() -> controllerDidLoad()
+```
 
-### import하기
+* `this.init()` : constructor와 비슷한 역할을 합니다. 이곳에서 this.state와 this.component의 초기 상태를 설정할 수 있습니다. 이 함수가 시작될 땐, 다른 함수들이 주입되지 않았으므로, 멤버 변수를 초기화 하는 행위 외에는 뷰나 상태등을 변경하지 않는걸 권장합니다.
+* `this.bind(component)` : component (html view component) 등을 업데이트 합니다. 함수 인자값으로 들어오는 component는 현재 연결된 component 입니다. 후에 setComponent 함수로 동적으로 component가 주입될 수 있기 때문에, 인자로 들어온 component로 바인딩 하는걸 권장합니다.
+* `this.controllerDidLoad()` : 앞 두 라이프사이클을 통해서 모든 종속성이 해결되면 컨트롤러 작업이 완료되었으므로 불립니다.
+
+### Setter
+* `setState(newState)`: 저장되어있는 state를 변경하고 render()를 트리거합니다.
+* `setComponent(newComponent)` : 저장되어있는 컴포넌트를 변경하고 `bind()`부터 라이프사이클을 다시 시작합니다. 로드가 완료되면 현재 상태에서 `render()`를 다시부릅니다.
+
+### Render
+* `render(state,component)` : 
+
+### Member variables
+* `this.state` : 해당 state는 변경해도 실제 render에 영향을 미치지 못합니다. state는 오직 `this.setState(newState)`에 의해서만 변경됩니다.
+* `this.component`: 컨트롤러와 연관되어 있는 html dom 객체입니다. 
+
+
+### Example - import하기
 html코드에 아래와 같이 등록한다.
 ```
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
@@ -95,11 +66,11 @@ html코드에 아래와 같이 등록한다.
     </script>
 ```
 
-## unresolved 문제
-- 렌더링 시, 성능 문제
-- 내부 state diff 체크의 시간 복잡도와, 정확성.
-- bind() 함수의 필요성. bind가 꼭 필요한가? bind를 어떻게 활용해줄 수 있을까?
-- this.state() intial state 랜더 여부.
-- 라이프사이클 -> init -> bind? bind -> init?
-- typescript도입. 클래스방식도 대응.
-- test를 위해 주입된버전으로 테스트할수있어야함.. 
+### Babel support
+ES6 문법을 사용하고 있기 때문에, 바벨을 포함하였습니다.
+```
+npm install 
+```
+```
+npm run-script build
+```
