@@ -21,8 +21,8 @@
 - 작업단위가 동일해야한다. (Controller 라는 단위)
 
 ## Snippets
-추가적으로, 여러가지 훅 함수들을 사용하기 위해서는 여러 코드들을 직접 작성해야하는 피로를 줄이기 위해
-vs-code의 snippet도 작성해두었다.
+추가적으로, 여러가지 훅 함수들을 사용하기 여러 코드들을 직접 장성해야하는데..
+그 피로를 줄이기 위해 vs-code의 snippet도 작성해두었다.
 
 ![img](https://github.com/jiwoo-choi/mini-coding-project/blob/main/Framework/import.js/snippet.gif)
 
@@ -89,4 +89,5 @@ function TestController(){
 - bind() 함수의 필요성. bind가 꼭 필요한가? bind를 어떻게 활용해줄 수 있을까?
 - this.state() intial state 랜더 여부.
 - 라이프사이클 -> init -> bind? bind -> init?
+- typescript도입. 클래스방식도 대응.
 
