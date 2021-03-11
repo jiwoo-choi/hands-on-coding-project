@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script
+	src="https://code.jquery.com/jquery-3.6.0.min.js"
+	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+	crossorigin="anonymous"></script>
+    <script src="import.js"></script>
+    <script src="calculator.js"></script>
+    <script>
+        imports(CalculatorController);
+    </script>
+
+<style>
+    @font-face {
+        font-family: 'digital-7';
+        src: url('./digital-7.ttf');
+    }
+
+    .row {
+        overflow: hidden;
+    }
+    body {
+        position:relative;
+        background: #FACE3D;
+        width:100%;
+        height:100vh;
+        margin:0;
+    }
+
+    .calculator {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        height:600px;
+        width:600px;
+        background-color: #262842;
+        border-radius: 10px;
+        box-shadow: 0px 0px 20px 5px rgba(128, 125, 125, 0.5);
+        overflow:hidden;
+    }
+
+    .display-area {
+        position: relative;
+        z-index:20px;
+        height:150px;
+        width:100%;
+        background-color: #36385E;
+        padding:20px 25px;
+        box-sizing: border-box;
+    }
+
+    .display {
+        /* margin:5px 10px; */
+        box-sizing: border-box;
+        width:100%;
+        height:100%;
+        background-color: #E1E5D2;
+        border: 5px solid #B3B2B3;
+        font-family: 'digital-7', sans-serif;
+        font-size:75px;
+        resize: none;
+    }
+
+    .container {
+        width:100%;
+        height:100%;
+        box-sizing: border-box;
+        margin:0 auto;
+        padding:0 20px;
+    }
+
+    .row {
+        overflow:hidden;
+        margin-top:27px;
+    }
+
+    button {
+        float:left;
+        width:125px;
+        height:55px;
+        margin-left:7.5px;
+        margin-right:7.5px;
+        border-radius: 10px;
+        border:none;
+        outline:none;
+        background: #58585A;
+        color:white;
+        font-size:40px;
+    }
+
+    .plus {
+        position:absolute;
+        height:145px;
+        /* line-height: 187px; */
+        font-size:50px;
+    }
+
+    .function {
+        background: #F7931D;
+    }
+
+
+</style>
+<body>
+    <div id="app" v-if="seen">
+        {{ message }}
+    </div>
+      
+
+    <div class="calculator">
+        <div class="display-area">
+            <textarea class="display" readonly="readonly"></textarea>
+            <!-- <div class="display">
+                1234567898 123,4,5,6,7 -> 동적으로?
+                // gutter
+            </div> -->
+        </div>
+        <div class="container">
+            <div class="row">
+                <button class="function">AC</button>
+                <button class="function">CE</button>
+                <button>%</button>
+                <button>/</button>
+
+            </div>
+            <div class="row">
+                <button>7</button><button>8</button><button>9</button><button>*</button>
+            </div>
+            <div class="row">
+                <button>4</button><button>5</button><button>6</button><button>-</button>
+            </div>
+            <div class="row">
+                <button>1</button><button>2</button><button>3</button><button class="plus">+</button>
+            </div>
+            <div class="row">
+                <button>0</button><button>.</button><button>=</button>
+            </div>
+
+        </div>
+
+    </div>
+</body>
+</html>
