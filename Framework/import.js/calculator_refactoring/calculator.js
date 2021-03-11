@@ -1,4 +1,3 @@
-
 function CalculatorController(){ 
 
     this.priority = {
