@@ -18,15 +18,25 @@ function imports(...args) {
                 return;
             }
 
+            // 수정 : init이 라이프사이클 맨 처음으로 옴.
+            // this.state를 이곳에서 등록할 수 있도록 함. (다른 멤버변수들과 구분하기 위해서..)
+            if (!obj$.init) {
+                console.warn("⚠️ "+ obj.name + " 에셔 init()을 찾을 수 없슴니다");
+            } else {
+                obj$.init();
+            }
+
             /** 외부로 노출된 state와 별도의 내부용 state를 만듬. Proxy 객체를 쓰는것과 같은 효과를 가짐. */
             obj$.$orig$state = $.extend({},obj$.state);
 
             if (obj$.state == null || obj$.state == undefined) {
                console.warn("⚠️ "+ obj.name + " 에셔 정의한 state를 찾을 수 없습니다. 이런 컨트롤러에서는 상태를 변경할 수 없으므로 render를 할 수 없습니다.");
             } 
+            
             if (!obj$.bind) {
                 console.warn("⚠️ "+ obj.name + " 에셔 bind()를 찾을 수 없슴니다");
             } else {
+                // bind의 리턴값을 가지도록 함. 상태에 따라 동적으로 rebind할 때 유리할 수 있음.
                 obj$.$component = obj$.bind();
                 if (!obj$.$component) {
                     console.error("❌ "+ obj.name + " 에셔 bind에서 리턴된 컴포넌트가 없습니다");
@@ -43,6 +53,7 @@ function imports(...args) {
             }
 
             obj.prototype.setState = (newState) => {
+
                 for (let key in newState) {
                     if (obj$.$orig$state[key] != undefined){
                         if (newState[key] !== obj$.$orig$state[key]) {
@@ -54,7 +65,7 @@ function imports(...args) {
                     }
                 } 
 
-                /** 외부용 state와 내부용 state 모두 업데이트해줌 */
+                /** 외부용 state와 내부용 state 모두 업데이트해줌. immutable이기 떄문에 복사해서 보내줌*/
                 let ns = $.extend({},obj$.$orig$state);
                 obj$.state = ns;
                 obj$.$orig$state = ns;
@@ -66,13 +77,6 @@ function imports(...args) {
                 console.warn("⚠️ "+ obj.name + "  action()이 등록되어 있지 않습니다.");
             } else {
                 obj$.action(obj$.$component);
-            }
-
-            // 모든 종속성 및 필수 등록 이후 해결..
-            if (!obj$.init) {
-                console.warn("⚠️ "+ obj.name + " 에셔 init()을 찾을 수 없슴니다");
-            } else {
-                obj$.init();
             }
    
         })
