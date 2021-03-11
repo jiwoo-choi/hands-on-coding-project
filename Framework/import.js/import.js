@@ -18,10 +18,11 @@ function imports(...args) {
                 return;
             }
 
+            /** 외부로 노출된 state와 별도의 내부용 state를 만듬. Proxy 객체를 쓰는것과 같은 효과를 가짐. */
             obj$.$orig$state = $.extend({},obj$.state);
 
             if (obj$.state == null || obj$.state == undefined) {
-                console.warn("⚠️ "+ obj.name + " 에셔 정의한 state를 찾을 수 없습니다. 이런 컨트롤러에서는 상태를 변경할 수 없으므로 render를 할 수 없습니다.");
+               console.warn("⚠️ "+ obj.name + " 에셔 정의한 state를 찾을 수 없습니다. 이런 컨트롤러에서는 상태를 변경할 수 없으므로 render를 할 수 없습니다.");
             } 
             if (!obj$.bind) {
                 console.warn("⚠️ "+ obj.name + " 에셔 bind()를 찾을 수 없슴니다");
@@ -40,6 +41,7 @@ function imports(...args) {
                 console.error("❌ " + obj.name + " render(state, component)함수가 추가되어 있지 않습니다. render(state, component) 함수를 객체에 추가해주세요");
                 return;
             }
+
             obj.prototype.setState = (newState) => {
                 for (let key in newState) {
                     if (obj$.$orig$state[key] != undefined){
@@ -51,7 +53,12 @@ function imports(...args) {
                         return;
                     }
                 } 
-                obj$.render($.extend({},obj$.$orig$state), obj$.$component);
+
+                /** 외부용 state와 내부용 state 모두 업데이트해줌 */
+                let ns = $.extend({},obj$.$orig$state);
+                obj$.state = ns;
+                obj$.$orig$state = ns;
+                obj$.render(ns, obj$.$component);
             }
 
             let action = obj$.action;
