@@ -101,4 +101,4 @@ html코드에 아래와 같이 등록한다.
 - this.state() intial state 랜더 여부.
 - 라이프사이클 -> init -> bind? bind -> init?
 - typescript도입. 클래스방식도 대응.
-
+- test를 위해 주입된버전으로 테스트할수있어야함.. 
