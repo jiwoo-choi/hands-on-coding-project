@@ -44,7 +44,6 @@ function TestController(){
     }
 }
 ```
-
 * this.state : 가장 최초 state를 정의한다. 이 state는 변경되지 않는다. 
 * this.setState : 기본으로 상속되는 코드이다. 모든 상태는 이 메소드 하나만을 가지고 변경가능하다. render()를 trigger하는 메소드이다.
 * this.bind : 외부 html을 내부 객체에서 통일해서 사용할 수 있도록 객체를 리턴한다. 여기서 리턴된 객체들이 뒤 component부분에 들어간다.
@@ -73,15 +72,27 @@ function TestController(){
         component.input.val(state.str);
     }
 }
+
 ```
-
-
 ### LifeCycle
 
-1. intial state 등록.
+1. intial state의 객체 내부 등록.
 2. bind를 통해 객체 내부에서 사용할 html 엘리먼트 등록.
 3. action을 통해 bind된 html 엘리먼트의 액션 등록.
 4. 모든 것이 resolved 되면, init() 이 불린다.
+
+### import하기
+html코드에 아래와 같이 등록한다.
+```
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="./import.js"></script>
+    <script>
+        imports(TestController);
+    </script>
+```
 
 ## unresolved 문제
 - 렌더링 시, 성능 문제
