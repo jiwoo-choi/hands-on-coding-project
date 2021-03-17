@@ -4,6 +4,7 @@ TDD, Refactoring,Effective Java, Design Pattern, Framework 등 궁금하거나 �
 |  제목 | Topic  |  언어 | 태그 |
 |-|:-:|:-:|-|
 |  계산기 예제로 시도해보는 TDD|  [TDD](https://github.com/jiwoo-choi/Clean-Code-Study/tree/main/TDD/calculator) | js| TDD, 이벤트버블링, MVVM |
+|  Typescript 프로젝트 TDD로 리팩토링하기 |  ||  |
 | html과 js로직을 분리하기 import.js|  [import.js](https://github.com/jiwoo-choi/mini-coding-project/tree/main/Framework/import.js) | js| html,css,react, snippet, babel |
 |  Map + List 를 합친 새로운 Interface 구현 | OOP/Generic | java | 제네릭활용, Java 제네릭 |
 |  Java 코드를 조작하는 방법. | Java | Java | Reflection, LambdaMetaFactory, byte code manipulation  |
