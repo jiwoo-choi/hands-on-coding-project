@@ -14,4 +14,4 @@ TDD, Refactoring,Effective Java, Design Pattern, Framework 등 궁금하거나 �
 |  프로그래머스 프론트앤드 | Java | Java | |
 |  카카오 2차 엘레베이터  | Java | Java | |
 |  tdd로 js cli개발  | Js |  | |
-|  슬롯머신 | Java | Java | |
+|  슬롯머신, https://github.com/kciter/GlitchLabel | Java | Java | |
