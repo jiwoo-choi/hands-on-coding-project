@@ -11,5 +11,7 @@ TDD, Refactoring,Effective Java, Design Pattern, Framework 등 궁금하거나 �
 |  Visitor Pattern을 활용하여 & Delegate CSV파서 만들기| OOP/Design Pattern | Java | Visitor pattern, delegate pattern |
 |  Java 쓰레드 API 활용하기 | Java | Java | |
 |  Java로 Promise 만들어보기 | Java | Java | |
-|  프로그래머스  | Java | Java | |
+|  프로그래머스 프론트앤드 | Java | Java | |
 |  카카오 2차 엘레베이터  | Java | Java | |
+|  tdd로 js cli개발  | Js |  | |
+|  슬롯머신 | Java | Java | |
