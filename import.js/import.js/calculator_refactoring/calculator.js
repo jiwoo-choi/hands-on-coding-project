@@ -8,27 +8,20 @@ function CalculatorController(){
         "-" : 1,
     } 
 
-    this.state = { 
-        str : "",
-        operatorPushable : true
-    }
+    this.init = () => {
+        this.state = { 
+            str : "",
+            operatorPushable : true
+        }
 
-    // this.init() => {
-        // state하기.
-        // 여기서 다른거 불러야함. view did load?
-    //}
-
-    this.bind = () => {
-        return { 
+        this.component = {
             container : $('.container'),
-            textarea: $('textarea')
-        } 
+            display : $('textarea'),
+        }
+        
     }
 
-
-    this.action = (component) => { 
-
-        console.log(component);
+    this.bind = (component) => {
         component.container.on('click', (e) => {
             if (e.target.tagName == "BUTTON") {
                 let val = e.target.innerText;
@@ -48,12 +41,10 @@ function CalculatorController(){
     }
 
     this.render = (state, component) => {
-        component.textarea.val(state.str);
+        component.display.val(state.str);
     }
 
-
     this.add = (value, isOperator) => {
-        console.log("IN : " , this.state);
         let str = this.state.str;
         let operatorPushable = this.state.operatorPushable;
         if (isOperator == true) {
@@ -62,6 +53,7 @@ function CalculatorController(){
                 operatorPushable = false;
             } else {
                 this.delete();
+                str = this.state.str;
                 str += value;
                 operatorPushable = false;
             }
@@ -69,7 +61,6 @@ function CalculatorController(){
             str += value;
             operatorPushable = true;
         }
-        console.log("OUT : " , {operatorPushable, str});
         this.setState({operatorPushable, str});
     }
 
@@ -154,10 +145,10 @@ function CalculatorController(){
                     oppStack.push(element);
                 } else {
                     let last = oppStack[oppStack.length-1];
-                    if (priority[last] < priority[element]) {
+                    if (this.priority[last] < this.priority[element]) {
                         oppStack.push(element);
                     } else {
-                        while(oppStack.length !== 0 && priority[last] >= priority[element]) {
+                        while(oppStack.length !== 0 && this.priority[last] >= this.priority[element]) {
                             infixResult.push(oppStack.pop());
                             if (oppStack.length > 0) last = oppStack[oppStack.length-1];
                         }
@@ -178,6 +169,8 @@ function CalculatorController(){
         return /^\d+$/.test(value);
     }
 
+    
 }
+
 
 
