@@ -1,7 +1,7 @@
 # Hands-On-Study
 TDD, Refactoring,Effective Java, Design Pattern, Framework 등 궁금하거나 배웠던 지식들을 직접 프로젝트를 해보며 공부합니다.
 
-[돌아가기](../../main)
+[돌아가기](../../tree/main)
 
 |  브랜치 | 설명 |
 |:-:|:-:|
