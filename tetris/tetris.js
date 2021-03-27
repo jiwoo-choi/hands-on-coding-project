@@ -1,0 +1,13 @@
+
+class Tetris {
+
+    left(){
+
+    }
+
+    right(){
+
+    }
+
+
+}

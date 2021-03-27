@@ -1,0 +1,16 @@
+.main-title-area {
+    height:100%;
+}
+.background-wrapper {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 100%;
+    height: 100vh;
+    background-image: url(./hero.png);
+}
+section#main {
+    position: relative;
+	/* padding-top: 50vh; */
+}
