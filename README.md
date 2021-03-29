@@ -14,5 +14,6 @@ TDD, Refactoring,Effective Java, Design Pattern, Framework 등 궁금하거나 �
 |-|:-:|:-:|-|
 |  계산기 예제로 시도해보는 TDD 및 코드 분리 |  | js|  |
 | html과 js로직을 분리하기 import.js|  | js|  |
+| 정규식으로 validator 패키지 만들어보기| 정규식 | js|  |
 
 
